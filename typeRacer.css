@@ -1,0 +1,155 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+/* root: making var global and accessible */
+/* "--" : customizing your own css */
+@media screen and (min-width: 223px) {}
+:root{
+    --rgbColor: #bb86fc;
+    --textColor: black;
+    --textNotType: #8f55d6;
+    --textFont: 'Inconsolata', monospace;
+}
+body{
+    font-family: 'Inconsolata', monospace;
+    background-color: var(--rgbColor);
+    color: var(--textColor); 
+    font-size: 1em;
+}
+h1{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+main{
+    margin: 50px auto;
+}
+.ninja{
+    width: 50px;
+    display: inline;
+}
+#top{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 15px;
+}
+
+#timer{
+    text-align: right;
+    margin-left: 5px;
+    font-size: 150%;
+    color:rgb(239, 226, 201);
+    font-weight:bold;
+}
+
+button{
+    background-color: rgb(66, 64, 64);
+    color:rgb(239, 226, 201);
+    border: 0;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+div#down{
+    margin: 25px ;
+    padding: 10px;
+    border-radius: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: var(--textFont);
+    font-weight: bolder;
+    background-color: black;
+    color: white;
+}
+
+/* -----------the game section down below ----------------------*/
+div#game{
+    line-height: 30px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+div.word{
+    display: inline-block;
+    font-family: solid 'Inconsolata', monospace;
+    margin: 5px;
+    font: 1em;
+    font-size: larger;
+    font-weight: bold;
+}
+
+/* if not focus */
+#focus-err{
+    position: absolute;
+    font-weight: bolder;
+    font-size: 18px;
+    inset: 0; /*inset: 0 = top-left-right-bottom: 0*/
+    text-align: center;
+    padding:50px;
+    color: rgb(239, 226, 201);
+}
+#sentences{
+    color:var(--textNotType);
+    filter: blur(5px);
+}
+/* now if i focus back to the game */
+#game:focus #sentences{
+    filter:blur(0);
+}
+/* also need the "click to play" to dissapear */
+#game:focus #focus-err{
+    display: none;
+}
+
+.letter.correct{
+    color:black;
+}
+.letter.wrong{
+    color: rgb(188, 9, 9);
+}
+
+/* Styling cursor */
+#cursor{
+    left:11px;
+    top: 180px;
+    width: 2px;
+    height: 25.6px; 
+    background-color: black ;
+    position: fixed;
+    animation: blink 0.6s infinite;
+}
+
+/* setting up your own animation */
+@keyframes blink {
+    /* begin of animation */
+    0%{
+        opacity: 1;
+    }
+    /* half in the animation */
+    50%{
+        opacity: 0;
+    }
+    /* end of animation */
+    100%{
+        opacity: 1;
+    }
+}
+/* focus on game -> cursor */
+#game:focus #cursor{
+    display: block;
+}
+
+/* --------- Game over!------------ */
+
+#game.over #sentences{
+    opacity: 0.5;
+    filter: blur(0px);
+}
+
+#game.over #cursor{
+    display: none;
+}
+#game.over #focus-err{
+    display: none;
+}
